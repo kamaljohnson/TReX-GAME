@@ -486,6 +486,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 330022656}
+  - component: {fileID: 330022657}
   m_Layer: 0
   m_Name: Game_UI
   m_TagString: Untagged
@@ -510,6 +511,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &330022657
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 330022655}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 670918f8eea348f418623928777fb12b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  user_name_text: {fileID: 1588417415}
+  password_text: {fileID: 1408721321}
+  password_field: {fileID: 1053047177}
+  SubmitButton: {fileID: 1979460559}
 --- !u!1 &339574333
 GameObject:
   m_ObjectHideFlags: 0
