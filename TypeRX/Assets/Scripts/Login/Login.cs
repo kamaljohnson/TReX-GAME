@@ -14,11 +14,14 @@ public class Login : MonoBehaviour {
 
     public Text user_name_text;
     public Text password_text;
+    public InputField password_field;
+
     public Button SubmitButton;
 
     private void Start()
     {
         SubmitButton.onClick.AddListener(GameLogin);
+        password_field.inputType = InputField.InputType.Password;
     }
     private string user_name;
     private string password;
@@ -27,13 +30,14 @@ public class Login : MonoBehaviour {
     {
         Debug.Log("checking. . .");
         user_name = user_name_text.text;
-        password = user_name_text.text;
-
+        password = password_field.text;
         //checking if fields blank
         if (user_name != "" && password != "")
         {
-            var response = new WebClient().DownloadString("127.0.0.1:8000/data");
-            Debug.Log(response);
+            //  TODO: pass the username and password to the server and get back the player profile 
+            //    var response = new WebClient().DownloadString("127.0.0.1:8000/data");
+            //    Debug.Log(response);
+            Debug.Log(password);
         }
     }
     
