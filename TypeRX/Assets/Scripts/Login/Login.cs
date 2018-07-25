@@ -4,6 +4,21 @@ using UnityEngine.UI;
 
 public class Login : MonoBehaviour {
 
+    #region UI elements
+    public InputField user_name_field;
+    public InputField password_field;
+    public Button SubmitButton;
+    #endregion
+
+    private string user_name;
+    private string password;
+
+    private void Start()
+    {
+        SubmitButton.onClick.AddListener(GameLogin);
+        password_field.inputType = InputField.InputType.Password;
+
+    }
     /*
      * this funtion is used to login the player
      * login posts the data entered to the login input field
@@ -11,25 +26,9 @@ public class Login : MonoBehaviour {
      * and get the profile of the user from the server
      * set is_online flag to true in the db
      */
-
-    public Text user_name_text;
-    public Text password_text;
-    public InputField password_field;
-
-    public Button SubmitButton;
-
-    private void Start()
-    {
-        SubmitButton.onClick.AddListener(GameLogin);
-        password_field.inputType = InputField.InputType.Password;
-    }
-    private string user_name;
-    private string password;
-
     public void GameLogin()
     {
-        Debug.Log("checking. . .");
-        user_name = user_name_text.text;
+        user_name = user_name_field.text;
         password = password_field.text;
         //checking if fields blank
         if (user_name != "" && password != "")
