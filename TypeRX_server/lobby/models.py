@@ -14,12 +14,13 @@ from django.db import models
 #   status (Playing, Lobby, Offline)
 #   local_rank
 # region Player Model
+GAME_STATUS = (
+    ('P', 'Playing'),
+    ('L', 'Lobby'),
+    ('O', 'Offline'),
+)
+
 class Player(models.Model):
-    GAME_STATUS = (
-        ('P', 'Playing'),
-        ('L', 'Lobby'),
-        ('O', 'Offline'),
-    )
 
     # Login fields
     username = models.CharField(max_length=10, primary_key=True)
