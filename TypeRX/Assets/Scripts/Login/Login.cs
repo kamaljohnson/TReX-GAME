@@ -65,6 +65,14 @@ public class Login : MonoBehaviour {
     }
 }
 
+/*
+ * this class stores the player profile 
+ * while logging-in and end_point is called 
+ * which checks if the user has an account 
+ * else creates one.
+ * is a username matches and the password is not 
+ * correct, a login error is created 
+ */
 [Serializable]
 public class Player
 {
