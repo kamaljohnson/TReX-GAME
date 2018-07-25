@@ -27,12 +27,12 @@ class Player(models.Model):
 
     # Profile fields
     global_rank = models.IntegerField(unique=True)
-    matches_won = models.IntegerField()
-    type_speed = models.IntegerField()
-    letters_typed = models.IntegerField()
+    matches_won = models.IntegerField(default=0)
+    type_speed = models.IntegerField(default=0)
+    letters_typed = models.IntegerField(default=0)
 
     # Game fields
     status = models.CharField(max_length=10, choices=GAME_STATUS)
-    local_rank = models.IntegerField()
+    local_rank = models.IntegerField(null=True)
 
 # endregion
