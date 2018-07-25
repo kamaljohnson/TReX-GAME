@@ -15,6 +15,7 @@ public class Login : MonoBehaviour {
 
     private void Start()
     {
+        Screen.orientation = ScreenOrientation.Portrait;
         SubmitButton.onClick.AddListener(GameLogin);
         password_field.inputType = InputField.InputType.Password;
 
