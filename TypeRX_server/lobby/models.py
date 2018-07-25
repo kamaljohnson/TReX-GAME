@@ -36,4 +36,7 @@ class Player(models.Model):
     status = models.CharField(max_length=10, choices=GAME_STATUS)
     local_rank = models.IntegerField(null=True)
 
+    def __str__(self):
+        return "{} {}".format(self.username, self.global_rank)
+
 # endregion
