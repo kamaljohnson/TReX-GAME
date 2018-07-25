@@ -1,6 +1,10 @@
-﻿using System.Net;
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.Specialized;
+using System.Net;
 using UnityEngine;
 using UnityEngine.UI;
+
 
 public class Login : MonoBehaviour {
 
@@ -12,6 +16,8 @@ public class Login : MonoBehaviour {
 
     private string user_name;
     private string password;
+
+    Player player = new Player();
 
     private void Start()
     {
@@ -31,14 +37,44 @@ public class Login : MonoBehaviour {
     {
         user_name = user_name_field.text;
         password = password_field.text;
+
         //checking if fields blank
         if (user_name != "" && password != "")
         {
-            //  TODO: pass the username and password to the server and get back the player profile 
-            //    var response = new WebClient().DownloadString("127.0.0.1:8000/data");
-            //    Debug.Log(response);
-            Debug.Log(password);
+            // TODO: pass the username and password to the server and get back the player profile 
+            player.username = user_name;
+            player.password = password;
+
+            string response = new WebClient().UploadString("http://127.0.0.1:8000/lobby/show", JsonUtility.ToJson(player));
+
+            player = JsonUtility.FromJson<Player>(response);
+
+            if (player.username != null && player.password == "")
+            {
+                Debug.Log("username already taken.");
+            }
+            else if (player.username != null && player.password != "")
+            {
+                Debug.Log("got data from server" + player.global_rank);
+            }
+            else
+            {
+                Debug.Log("created new account");
+            }
         }
     }
-    
 }
+
+[Serializable]
+public class Player
+{
+    public string username;
+    public string password;
+    public int global_rank;
+    public int matches_won;
+    public int type_speed;
+    public int letters_typed;
+    public string status;
+    public int local_rank;
+}
+

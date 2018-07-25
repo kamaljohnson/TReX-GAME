@@ -1,6 +1,11 @@
 from django.db import models
 
+GAME_STATUS = (
+    ('P', 'Playing'),
+    ('L', 'Lobby'),
+    ('O', 'Offline'),
 
+)
 # Player
 # Login
 #   username
@@ -14,11 +19,6 @@ from django.db import models
 #   status (Playing, Lobby, Offline)
 #   local_rank
 # region Player Model
-GAME_STATUS = (
-    ('P', 'Playing'),
-    ('L', 'Lobby'),
-    ('O', 'Offline'),
-)
 
 class Player(models.Model):
 
@@ -37,6 +37,6 @@ class Player(models.Model):
     local_rank = models.IntegerField(null=True)
 
     def __str__(self):
-        return "{} {}".format(self.username, self.global_rank)
+        return "{} : {}".format(self.username, self.global_rank)
 
 # endregion
