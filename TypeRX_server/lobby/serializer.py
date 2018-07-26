@@ -4,13 +4,12 @@ from .models import Player
 
 class PlayerSerializer(serializers.Serializer):
 
-    # class Meta:
-    #     model = Player
-    #     fields = ('username', 'password', 'global_rank', 'matches_won', 'letters_typed', 'status', 'local_rank')
-    #     # extra_kwargs = {'password': {'write_only': True}}
-    #
-    password = serializers.CharField(max_length=10)
+    class Meta:
+        model = Player
+        fields = ('username', 'password', 'global_rank', 'matches_won', 'letters_typed', 'status', 'local_rank')
+
     username = serializers.CharField(max_length=10)
+    password = serializers.CharField(max_length=10)
 
     # Profile fields
     global_rank = serializers.IntegerField(required=False)

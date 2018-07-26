@@ -44,6 +44,7 @@ public class Login : MonoBehaviour {
             // TODO: pass the username and password to the server and get back the player profile 
             player.username = user_name;
             player.password = password;
+            player.status = "O";
 
             string response = new WebClient().UploadString("http://127.0.0.1:8000/lobby/show", JsonUtility.ToJson(player));
             print(response);
@@ -85,14 +86,5 @@ public class Player
     public string status;
     public int local_rank;
 
-    public Player()
-    {
-        this.global_rank = 0;
-        this.matches_won = 0;
-        this.type_speed = 0;
-        this.letters_typed = 0;
-        this.status = "O";
-        this.local_rank = 0;
-    }
 }
 
