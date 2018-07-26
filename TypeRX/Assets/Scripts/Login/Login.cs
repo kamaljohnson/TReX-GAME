@@ -41,12 +41,10 @@ public class Login : MonoBehaviour {
         //checking if fields blank
         if (user_name != "" && password != "")
         {
-            // TODO: pass the username and password to the server and get back the player profile 
             player.username = user_name;
             player.password = password;
-            player.status = "O";
 
-            string response = new WebClient().UploadString("http://127.0.0.1:8000/lobby/show", JsonUtility.ToJson(player));
+            string response = new WebClient().UploadString("http://127.0.0.1:8000/lobby/login", JsonUtility.ToJson(player));
             print(response);
             player = JsonUtility.FromJson<Player>(response);
 

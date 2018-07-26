@@ -7,14 +7,23 @@ from rest_framework.renderers import JSONRenderer
 import json
 
 
+class FeedView(APIView):
+
+    def get(self, request):
+        online_player_usernames = Player.objects.filter(status='L').values('username')
+        print(PlayerSerializer(online_player_usernames).data)
+        player_dict = {'players': PlayerSerializer(online_player_usernames, ).data}
+
+        return Response(player_dict)
+
+
 class PlayerView(APIView):
 
     def get(self, request):
 
         player_list = Player.objects.all()
-        serializer = PlayerSerializer(player_list[0])
-        json = JSONRenderer().render(serializer.data)
-        return HttpResponse(json)
+        serializer = PlayerSerializer(player_list, many=True)
+        return Response(serializer.data)
 
     def post(self, request):
 
@@ -28,11 +37,14 @@ class PlayerView(APIView):
         try:
             player = Player.objects.get(username=username)
             if player.password == password:
+                player.status = 'L'
+                player.save()
                 return Response(PlayerSerializer(player).data)
             else:
                 player.password = ""
                 return Response(PlayerSerializer(player).data)
         except Player.DoesNotExist:
             player = Player(username=username, password=password, global_rank=Player.objects.all().count() + 1)
+            player.status = 'L'
             player.save()
             return Response(PlayerSerializer(player).data)

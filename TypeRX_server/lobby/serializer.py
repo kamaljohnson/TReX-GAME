@@ -2,11 +2,11 @@ from rest_framework import serializers
 from .models import Player
 
 
-class PlayerSerializer(serializers.Serializer):
+class PlayerSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Player
-        fields = ('username', 'password', 'global_rank', 'matches_won', 'letters_typed', 'status', 'local_rank')
+        fields = ('username', 'password', 'global_rank', 'matches_won', 'type_speed', 'letters_typed', 'status', 'local_rank')
 
     username = serializers.CharField(max_length=10)
     password = serializers.CharField(max_length=10)
