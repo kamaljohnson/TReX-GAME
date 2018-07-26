@@ -24,6 +24,7 @@ class PlayerView(APIView):
         username = data.get("username")
         password = data.get("password")
 
+        # checks if a player with username is present in the db
         try:
             player = Player.objects.get(username=username)
             if player.password == password:
