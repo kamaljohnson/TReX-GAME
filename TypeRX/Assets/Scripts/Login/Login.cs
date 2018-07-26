@@ -46,7 +46,7 @@ public class Login : MonoBehaviour {
             player.password = password;
 
             string response = new WebClient().UploadString("http://127.0.0.1:8000/lobby/show", JsonUtility.ToJson(player));
-
+            print(response);
             player = JsonUtility.FromJson<Player>(response);
 
             if (player.username != null && player.password == "")
@@ -55,11 +55,11 @@ public class Login : MonoBehaviour {
             }
             else if (player.username != null && player.password != "")
             {
-                Debug.Log("got data from server" + player.global_rank);
+                Debug.Log("loged in as : " + player.username );
             }
             else
             {
-                Debug.Log("created new account");
+                Debug.Log("created new account with username : " + player.username);
             }
         }
     }
@@ -84,5 +84,15 @@ public class Player
     public int letters_typed;
     public string status;
     public int local_rank;
+
+    public Player()
+    {
+        this.global_rank = 0;
+        this.matches_won = 0;
+        this.type_speed = 0;
+        this.letters_typed = 0;
+        this.status = "O";
+        this.local_rank = 0;
+    }
 }
 

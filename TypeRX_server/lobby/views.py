@@ -1,9 +1,10 @@
-
 from rest_framework.views import APIView
 from .models import Player
 from .serializer import PlayerSerializer
+from rest_framework.response import Response
 from django.http import HttpResponse, Http404
 from rest_framework.renderers import JSONRenderer
+
 
 class PlayerView(APIView):
 
@@ -18,21 +19,22 @@ class PlayerView(APIView):
 
         data = request.body
         print(data)
+        serializer = PlayerSerializer(data=data)
 
-        username = data.get('username')
-        password = data.get('password')
+        if serializer.is_valid():
+            player = serializer.data
+            check_player = Player.objects.get(username=player.username)
 
-        player = Player.objects.get(username = username)
-
-        if(player):
-            if(player.password == password):
-                serializer = PlayerSerializer(player)
-                return HttpResponse(serializer.data)
+            if check_player:
+                if (player.password == check_player.password):
+                    print('found')
+                    return Response(serializer.data)
+                else:
+                    print('invalid')
+                    return Response(serializer.data)
             else:
-                player.password = ""
-                serializer = PlayerSerializer(player)
-                return HttpResponse(serializer.data)
-        else:
-            player = Player(username = username, password = password)
-            player.save()
-            return HttpResponse("")
+                print('created')
+                player = Player(username=player.username, password=player.password)
+                player.save()
+        print('here')
+        return HttpResponse(Http404)
