@@ -29,9 +29,9 @@ class PlayerView(APIView):
             if player.password == password:
                 return Response(PlayerSerializer(player).data)
             else:
-                print(player)
-                return Response(PlayerSerializer(player.data))
-        except:
-            player = Player(username=username, password=password)
+                player.password = ""
+                return Response(PlayerSerializer(player).data)
+        except Player.DoesNotExist:
+            player = Player(username=username, password=password, global_rank=Player.objects.all().count() + 1)
             player.save()
             return Response(PlayerSerializer(player).data)
