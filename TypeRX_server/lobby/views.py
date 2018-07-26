@@ -36,5 +36,6 @@ class PlayerView(APIView):
                 print('created')
                 player = Player(username=player.username, password=player.password)
                 player.save()
+                return Response(serializer.data)
         print('here')
         return HttpResponse(Http404)
