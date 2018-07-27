@@ -427,6 +427,7 @@ GameObject:
   m_Component:
   - component: {fileID: 330022656}
   - component: {fileID: 330022657}
+  - component: {fileID: 330022658}
   m_Layer: 0
   m_Name: Game_UI
   m_TagString: Untagged
@@ -465,6 +466,19 @@ MonoBehaviour:
   user_name_field: {fileID: 1820650880}
   password_field: {fileID: 844233909}
   SubmitButton: {fileID: 1300022339}
+  feeds_text: {fileID: 264509631}
+--- !u!114 &330022658
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 330022655}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a76a8a70e45929c4f94a194c4dc7284d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  feeds_text: {fileID: 264509631}
 --- !u!1 &339574333
 GameObject:
   m_ObjectHideFlags: 0

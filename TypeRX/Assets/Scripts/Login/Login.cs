@@ -16,6 +16,7 @@ public class Login : MonoBehaviour {
 
     private string user_name;
     private string password;
+    public Text feeds_text;
 
     Player player = new Player();
 
@@ -41,26 +42,24 @@ public class Login : MonoBehaviour {
         //checking if fields blank
         if (user_name != "" && password != "")
         {
-            // TODO: pass the username and password to the server and get back the player profile 
             player.username = user_name;
             player.password = password;
-            player.status = "O";
 
-            string response = new WebClient().UploadString("http://127.0.0.1:8000/lobby/show", JsonUtility.ToJson(player));
+            string response = new WebClient().UploadString("http://192.168.43.10:8000/lobby/login", JsonUtility.ToJson(player));
             print(response);
             player = JsonUtility.FromJson<Player>(response);
 
             if (player.username != null && player.password == "")
             {
-                Debug.Log("username already taken.");
+                feeds_text.text = "username already taken.";
             }
             else if (player.username != null && player.password != "")
             {
-                Debug.Log("loged in as : " + player.username );
+                feeds_text.text = "loged in as : " + player.username;
             }
             else
             {
-                Debug.Log("created new account with username : " + player.username);
+                feeds_text.text = "created new account with username : " + player.username;
             }
         }
     }
