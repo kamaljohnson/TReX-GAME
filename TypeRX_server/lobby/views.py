@@ -9,7 +9,7 @@ import json
 class FeedView(APIView):
 
     def get(self, request):
-        player_list = Player.objects.all().values('username')
+        player_list = Player.objects.filter(status='L').values('username')
         serializer = LobbyFeedSerializer(player_list, many=True)
         parsing_data = {'players': serializer.data}
         return Response(parsing_data)

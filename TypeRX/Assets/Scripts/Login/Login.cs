@@ -45,7 +45,7 @@ public class Login : MonoBehaviour {
             player.username = user_name;
             player.password = password;
 
-            string response = new WebClient().UploadString("http://127.0.0.1:8000/lobby/login", JsonUtility.ToJson(player));
+            string response = new WebClient().UploadString("http://192.168.43.10:8000/lobby/login", JsonUtility.ToJson(player));
             print(response);
             player = JsonUtility.FromJson<Player>(response);
 
