@@ -7,6 +7,8 @@ GAME_STATUS = (
 
 )
 # Player
+# Identification
+#   player_id
 # Login
 #   username
 #   password
@@ -20,10 +22,11 @@ GAME_STATUS = (
 #   local_rank
 # region Player Model
 
+
 class Player(models.Model):
 
     # Login fields
-    username = models.CharField(max_length=10, primary_key=True)
+    username = models.CharField(max_length=10)
     password = models.CharField(max_length=10)
 
     # Profile fields

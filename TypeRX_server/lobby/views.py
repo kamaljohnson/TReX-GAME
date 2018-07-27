@@ -1,20 +1,18 @@
 from rest_framework.views import APIView
 from .models import Player
-from .serializer import PlayerSerializer
+from .serializer import PlayerSerializer, LobbyFeedSerializer
 from rest_framework.response import Response
-from django.http import HttpResponse, Http404
-from rest_framework.renderers import JSONRenderer
+
 import json
 
 
 class FeedView(APIView):
 
     def get(self, request):
-        online_player_usernames = Player.objects.filter(status='L').values('username')
-        print(PlayerSerializer(online_player_usernames).data)
-        player_dict = {'players': PlayerSerializer(online_player_usernames, ).data}
-
-        return Response(player_dict)
+        player_list = Player.objects.all().values('username')
+        serializer = LobbyFeedSerializer(player_list, many=True)
+        parsing_data = {'players': serializer.data}
+        return Response(parsing_data)
 
 
 class PlayerView(APIView):
