@@ -13,6 +13,7 @@ class UpdatePlayerView(APIView):
         data = json.loads(data)
 
         username = data.get("username")
+        print(username)
         player = Player.objects.get(username=username)
 
         player.status = data.get('status')

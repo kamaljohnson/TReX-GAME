@@ -24,8 +24,6 @@ public class NotificationLogger : MonoBehaviour {
 
     private void Update()
     {
-        Debug.Log("count : " + LoggerQueue.Count);
-        Debug.Log(count_down_time);
         if(start_timer)
         {
             count_down_time -= Time.deltaTime;

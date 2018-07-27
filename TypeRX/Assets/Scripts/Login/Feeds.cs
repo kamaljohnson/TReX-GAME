@@ -12,20 +12,9 @@ public class Feeds : MonoBehaviour {
 
     private void Update()
     {
-        if(timer < 0)
-        {
-            GetFeedFromServer();
-            timer = server_interaction_period;
-        }
-        timer -= Time.deltaTime;
-
-    }
-
-    void GetFeedFromServer()
-    {
         string response = new WebClient().DownloadString("http://192.168.43.10:8000/lobby/feeds");
         players = JsonUtility.FromJson<Players>(response);
-        if (players!=null)
+        if (players != null)
         {
             foreach (Player player in players.players)
             {

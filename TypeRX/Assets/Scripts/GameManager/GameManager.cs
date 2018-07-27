@@ -2,42 +2,92 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Net;
+
 
 public class GameManager : MonoBehaviour {
 
+    #region Game Status bools
     public static bool logged_in;
     public static bool playing;
-    public static bool chatting;
-
+    public static bool in_lobby;
+    public static bool game_over;
+    #endregion
+    #region  UI GameObjects
     public GameObject LoginUI;
     public GameObject LobbyUI;
     public GameObject GameUI;
     public GameObject GameOverUI;
+    #endregion
 
-
-    void Login()
+    private void Awake()
     {
+        Login();
+    }
+    public void Login()
+    {
+        if (LocalPlayer.local_player != null)
+        {
+            LocalPlayer.local_player.status = "O";
+            string response = new WebClient().UploadString("http://192.168.43.10:8000/lobby/update-player", JsonUtility.ToJson(LocalPlayer.local_player))
+        }
+        logged_in = false;
+        playing = false;
+        in_lobby = false;
+        game_over = false;
 
+        LoginUI.SetActive(true);
+        LobbyUI.SetActive(false);
+        GameUI.SetActive(false);
+        GameOverUI.SetActive(false);
     }
     
-    void GameOver()
+    public void GameOver()
     {
+        LocalPlayer.local_player.status = "P";
+        string response = new WebClient().UploadString("http://192.168.43.10:8000/lobby/update-player", JsonUtility.ToJson(LocalPlayer.local_player));
 
+        logged_in = true;
+        playing = false;
+        in_lobby = false;
+        game_over = true;
+
+        LoginUI.SetActive(false);
+        LobbyUI.SetActive(false);
+        GameUI.SetActive(false);
+        GameOverUI.SetActive(true);
     }
 
-    void StartGame()
+    public void StartGame()
     {
+        LocalPlayer.local_player.status = "P";
+        string response = new WebClient().UploadString("http://192.168.43.10:8000/lobby/update-player", JsonUtility.ToJson(LocalPlayer.local_player));
 
+        logged_in = true;
+        playing = true;
+        in_lobby = false;
+        game_over = false;
+
+        LoginUI.SetActive(false);
+        LobbyUI.SetActive(false);
+        GameUI.SetActive(true);
+        GameOverUI.SetActive(false);
     }
 
-    void AtLobby()
+    public void AtLobby()
     {
+        LocalPlayer.local_player.status = "L";
+        string response = new WebClient().UploadString("http://192.168.43.10:8000/lobby/update-player", JsonUtility.ToJson(LocalPlayer.local_player));
 
-    }
+        logged_in = true;
+        playing = false;
+        in_lobby = false;
+        game_over = false;
 
-    void Chat()
-    {
-
+        LoginUI.SetActive(false);
+        LobbyUI.SetActive(true);
+        GameUI.SetActive(false);
+        GameOverUI.SetActive(false);
     }
 
 }

@@ -355,6 +355,7 @@ GameObject:
   - component: {fileID: 330022657}
   - component: {fileID: 330022658}
   - component: {fileID: 330022659}
+  - component: {fileID: 330022660}
   m_Layer: 0
   m_Name: Game_UI
   m_TagString: Untagged
@@ -418,6 +419,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   message: {fileID: 815377838}
+--- !u!114 &330022660
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 330022655}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13cbe849f3a7cbc43b27b243dc4b4088, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LoginUI: {fileID: 548943428}
+  LobbyUI: {fileID: 1072605808}
+  GameUI: {fileID: 271750864}
+  GameOverUI: {fileID: 1096631531}
 --- !u!1 &339574333
 GameObject:
   m_ObjectHideFlags: 0
@@ -1138,7 +1154,7 @@ GameObject:
   - component: {fileID: 1096631534}
   - component: {fileID: 1096631533}
   m_Layer: 0
-  m_Name: Chat
+  m_Name: GameOver
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
