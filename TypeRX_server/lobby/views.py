@@ -6,6 +6,19 @@ from rest_framework.response import Response
 import json
 
 
+class UpdatePlayerView(APIView):
+
+    def post(self, request):
+        data = request.body.decode('utf-8')
+        data = json.loads(data)
+
+        username = data.get("username")
+        player = Player.objects.get(username=username)
+
+        player.status = data.get('status')
+        player.save()
+        return Response(PlayerSerializer(player).data)
+
 class FeedView(APIView):
 
     def get(self, request):
