@@ -7,19 +7,30 @@ using System.Collections.Generic;
 public class Feeds : MonoBehaviour {
 
     Players players = new Players();
+    readonly float server_interaction_period = 0.5f;
+    float timer;
 
-    public Text feeds_text;
-    
     private void Update()
     {
-        
-        feeds_text.text = "";
-        string response = new WebClient().DownloadString("http://192.168.43.10:8000/lobby/feeds");
-        print(response);
-        players = JsonUtility.FromJson<Players>(response);
-        foreach (Player player in players.players)
+        if(timer < 0)
         {
-            feeds_text.text = feeds_text.text + " " + player.username;
+            GetFeedFromServer();
+            timer = server_interaction_period;
+        }
+        timer -= Time.deltaTime;
+
+    }
+
+    void GetFeedFromServer()
+    {
+        string response = new WebClient().DownloadString("http://192.168.43.10:8000/lobby/feeds");
+        players = JsonUtility.FromJson<Players>(response);
+        if (players!=null)
+        {
+            foreach (Player player in players.players)
+            {
+                NotificationLogger.Load(player.username + " logged in");
+            }
         }
     }
 }
