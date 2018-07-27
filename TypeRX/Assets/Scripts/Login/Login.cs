@@ -16,6 +16,7 @@ public class Login : MonoBehaviour {
 
     private string user_name;
     private string password;
+    public Text feeds_text;
 
     Player player = new Player();
 
@@ -50,15 +51,15 @@ public class Login : MonoBehaviour {
 
             if (player.username != null && player.password == "")
             {
-                Debug.Log("username already taken.");
+                feeds_text.text = "username already taken.";
             }
             else if (player.username != null && player.password != "")
             {
-                Debug.Log("loged in as : " + player.username );
+                feeds_text.text = "loged in as : " + player.username;
             }
             else
             {
-                Debug.Log("created new account with username : " + player.username);
+                feeds_text.text = "created new account with username : " + player.username;
             }
         }
     }
