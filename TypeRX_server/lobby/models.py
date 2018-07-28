@@ -1,8 +1,9 @@
 from django.db import models
 
 GAME_STATUS = (
-    ('P', 'Playing'),
+    ('LI', 'Log In'),
     ('L', 'Lobby'),
+    ('P', 'Playing'),
     ('O', 'Offline'),
 
 )

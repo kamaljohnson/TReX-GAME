@@ -20,32 +20,17 @@ public class GameManager : MonoBehaviour {
     public GameObject GameOverUI;
     #endregion
 
-    private void Awake()
-    {
-        Login();
-    }
     public void Login()
     {
-        if (LocalPlayer.local_player != null)
-        {
-            LocalPlayer.local_player.status = "O";
-            string response = new WebClient().UploadString("http://192.168.43.10:8000/lobby/update-player", JsonUtility.ToJson(LocalPlayer.local_player))
-        }
-        logged_in = false;
-        playing = false;
-        in_lobby = false;
-        game_over = false;
 
-        LoginUI.SetActive(true);
-        LobbyUI.SetActive(false);
-        GameUI.SetActive(false);
-        GameOverUI.SetActive(false);
+
+        AtLobby();
     }
     
     public void GameOver()
     {
         LocalPlayer.local_player.status = "P";
-        string response = new WebClient().UploadString("http://192.168.43.10:8000/lobby/update-player", JsonUtility.ToJson(LocalPlayer.local_player));
+        new WebClient().UploadString("http://192.168.43.10:8000/lobby/update-player", JsonUtility.ToJson(LocalPlayer.local_player));
 
         logged_in = true;
         playing = false;
@@ -61,8 +46,8 @@ public class GameManager : MonoBehaviour {
     public void StartGame()
     {
         LocalPlayer.local_player.status = "P";
-        string response = new WebClient().UploadString("http://192.168.43.10:8000/lobby/update-player", JsonUtility.ToJson(LocalPlayer.local_player));
-
+        new WebClient().UploadString("http://192.168.43.10:8000/lobby/update-player", JsonUtility.ToJson(LocalPlayer.local_player));
+       
         logged_in = true;
         playing = true;
         in_lobby = false;
@@ -77,8 +62,8 @@ public class GameManager : MonoBehaviour {
     public void AtLobby()
     {
         LocalPlayer.local_player.status = "L";
-        string response = new WebClient().UploadString("http://192.168.43.10:8000/lobby/update-player", JsonUtility.ToJson(LocalPlayer.local_player));
-
+        new WebClient().UploadString("http://192.168.43.10:8000/lobby/update-player", JsonUtility.ToJson(LocalPlayer.local_player));
+        
         logged_in = true;
         playing = false;
         in_lobby = false;

@@ -25,6 +25,7 @@ public class Login : MonoBehaviour {
         password_field.inputType = InputField.InputType.Password;
 
     }
+
     /*
      * this funtion is used to login the player
      * login posts the data entered to the login input field
@@ -47,19 +48,15 @@ public class Login : MonoBehaviour {
             print(response);
             player = JsonUtility.FromJson<Player>(response);
 
-            if (player.username != null && player.password == "")
+            if (player.username == null && player.password == "")
             {
                 NotificationLogger.Load("username taken!!!");
-            }
-            else if (player.username != null && player.password != "")
-            {
-                LocalPlayer.local_player = player;
-                FindObjectOfType<GameManager>().AtLobby();
             }
             else
             {
                 LocalPlayer.local_player = player;
-                FindObjectOfType<GameManager>().AtLobby();
+                NotificationLogger.Load("logged in as " + LocalPlayer.local_player.username);
+                FindObjectOfType<GameManager>().Login();
             }
         }
     }
