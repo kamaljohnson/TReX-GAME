@@ -37,11 +37,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'channels',
     'lobby',
     'chat',
     'game',
-    'channels',
-
 ]
 
 MIDDLEWARE = [
@@ -55,6 +54,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'TypeRX_server.urls'
+ASGI_APPLICATION = "TypeTX_server.routing.application"
 
 TEMPLATES = [
     {

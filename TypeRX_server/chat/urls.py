@@ -1,7 +1,8 @@
 from django.conf.urls import url
-from .views import *
-urlpatterns = [
-    url(r'^login$', PlayerView.as_view(), name="lobby-login"),
-    url(r'^feeds$', FeedView.as_view(), name="lobby-feed"),
-    url(r'^update-player$', UpdatePlayerView.as_view(), name="lobby-update_player")
-]
+from channels.routing import URLRouter
+from .consumers import ChatConsumer
+
+URLRouter([
+    # message/<thread_id>/<username>/
+    url(r"^(?P<thread_id>\w+)/$)/(?P<username>\w+)/$", ChatConsumer),
+])
