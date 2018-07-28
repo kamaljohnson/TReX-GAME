@@ -48,14 +48,20 @@ public class Login : MonoBehaviour {
             print(response);
             player = JsonUtility.FromJson<Player>(response);
 
-            if (player.username == null && player.password == "")
+            if (player.username != null && player.password == "")
             {
-                NotificationLogger.Load("username taken!!!");
+                NotificationLogger.Load("username taken");
+            }
+            else if(player.username != null && player.letters_typed != 0)
+            {
+                LocalPlayer.local_player = player;
+                NotificationLogger.Load("welcome back " + LocalPlayer.local_player.username);
+                FindObjectOfType<GameManager>().Login();
             }
             else
             {
                 LocalPlayer.local_player = player;
-                NotificationLogger.Load("logged in as " + LocalPlayer.local_player.username);
+                NotificationLogger.Load("loggend in as " + LocalPlayer.local_player.username);
                 FindObjectOfType<GameManager>().Login();
             }
         }
