@@ -1,10 +1,9 @@
 from django.urls import path, re_path
 
 
-from .views import MessageView, PlayerMessageView
+from .views import FrontEndInteractionView
 
 app_name = 'chat'
 urlpatterns = [
-    path("", MessageView.as_view()),
-    re_path(r"^(?P<username>[\w.@+-]+)", PlayerMessageView.as_view()),
+    re_path(r"^$", FrontEndInteractionView.as_view()),
 ]
