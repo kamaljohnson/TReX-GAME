@@ -25,7 +25,7 @@ SECRET_KEY = '4uu@+@bvh$d(u8p1g**6lk$o!af$i+cta^tg@qp0pvqbtqk8ex'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['192.168.43.10', '127.0.0.1']
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'channels',
     'lobby',
     'chat',
     'game',
@@ -53,6 +54,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'TypeRX_server.urls'
+ASGI_APPLICATION = "TypeRX_server.routing.application"
 
 TEMPLATES = [
     {
