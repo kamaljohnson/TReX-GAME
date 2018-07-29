@@ -1,3 +1,9 @@
 from django.shortcuts import render
 
-# Create your views here.
+
+class MessageView:
+    pass
+
+
+class PlayerMessageView:
+    pass
