@@ -17,8 +17,26 @@ our online typing game supporting English and also local languages -Malayalam
 
 #### The project is still in development stage and any contributions to this project is always welcome 
 
-for downloading the project files to your local directory use
+#### 1. Clone this repo on your machine:
 
-```
-git clone https://github.com/kamaljohnson/TReX-GAME.git
-```
+     git clone https://github.com/kamaljohnson/TReX-GAME.git
+
+
+#### 2. **Optional step** Setup a virtualenv in your directory. 
+
+If you haven't yet set up virtualenv on your machine, please install it via pip:
+
+
+     sudo apt-get install python3-setuptools
+
+     sudo easy_install3 pip    
+
+     sudo pip3 install virtualenv
+
+Then run:
+
+     virtualenv -p python3 env && source env/bin/activate
+
+#### 3. Install the build dependencies:
+
+     pip3 install -r requirements.txt
