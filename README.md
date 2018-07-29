@@ -19,4 +19,6 @@ our online typing game supporting English and also local languages -Malayalam
 
 for downloading the project files to your local directory use
 
-```git clone https://github.com/kamaljohnson/TReX-GAME.git```
+```
+git clone https://github.com/kamaljohnson/TReX-GAME.git
+```
