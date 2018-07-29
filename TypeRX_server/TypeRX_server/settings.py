@@ -37,7 +37,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'channels',
     'lobby',
     'chat',
     'game',
@@ -54,7 +53,6 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'TypeRX_server.urls'
-ASGI_APPLICATION = "TypeTX_server.routing.application"
 
 TEMPLATES = [
     {
@@ -124,5 +122,3 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-# Channels configs
-ASGI_APPLICATION = "TypeRX_server.routing.application"
