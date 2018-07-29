@@ -8,8 +8,7 @@ our online typing game supporting English and also local languages -Malayalam
 ### Game-Server Interaction 
 #### The interaction of the game and the server is divided into three stages
 - login 
-- chat
-- game
+- chat/game
 
 #### The following methods are used for the communications 
 - [API](http://www.django-rest-framework.org/) calls for login from front-end
